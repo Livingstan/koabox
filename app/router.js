@@ -1,36 +1,35 @@
-import Router from 'koa-rest-router';
-import {
-    store,
-    getUser
-} from './controller/UserController';
+import Router from 'koa-router';
+import User from './controller/UserController';
 
-let router = Router();
+const router = new Router();
 
-router.resource('users', {
-    // GET /users 
-    index: getUser,
+router.get("/", User.fetchAll);
 
-    // GET /users/new 
-    new: (ctx, next) => {},
+// let router = Router({
+//     prefix: 'api/'
+// });
 
-    // POST /users 
-    create: store,
+// router.resource('users', {
+//     // GET /users 
+//     index: User.fetchAll,
 
-    // GET /users/:user 
-    show: (ctx, next) => {},
+//     // GET /users/new 
+//     new: (ctx, next) => {},
 
-    // GET /users/:user/edit 
-    edit: (ctx, next) => {},
+//     // POST /users 
+//     create: User.store,
 
-    // PUT /users/:user 
-    update: (ctx, next) => {},
+//     // GET /users/:user 
+//     show: User.fetchBy,
 
-    // DELETE /users/:user 
-    remove: (ctx, next) => {}
-});
+//     // GET /users/:user/edit 
+//     edit: User.edit,
 
-async function load(ctx) {
-    ctx.body = 'welcome';
-}
+//     // PUT /users/:user 
+//     update: User.update,
+
+//     // DELETE /users/:user 
+//     remove: User.destroy
+// });
 
 export default router;
