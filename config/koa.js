@@ -15,6 +15,7 @@ import config from './app';
 import router from '../app/router';
 import jwt from './jwt';
 
+
 const init = () => {
     mongoose.Promise = global.Promise;
 
@@ -31,17 +32,16 @@ const init = () => {
 
 export const start = () => {
 
-
     init()
         .then(app => {
             // register plugins
-            app.use(jwt.errorHandler()).use(jwt.jwt());
+            // app.use(jwt.errorHandler()).use(jwt.jwt());
             app.use(bodyParser());
             app.use(logger());
             app.use(convert(koaRes()));
 
-            // bind routes
-            app.use(router.middleware());
+            // bind routes            
+            app.use(router.routes()).use(router.allowedMethods());
 
             app.listen(config.server.port, () => {
                 // Create server URL

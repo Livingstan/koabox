@@ -25,6 +25,7 @@
     "koa-logger": "^3.1.0",
     "koa-res": "^3.0.0",
     "koa-rest-router": "^1.0.1",
+    "koa-router": "^7.3.0",
     "nodemon": "^1.14.3",
     "path": "^0.12.7"
   }
