@@ -23,7 +23,10 @@
     "circular-json": "^0.5.1",
     "koa-body": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-res": "^3.0.0",
     "mongoose": "^4.13.7",
-    "nodemon": "^1.13.3"
+    "nodemon": "^1.13.3",
+    "path": "^0.12.7"
   }
 }
