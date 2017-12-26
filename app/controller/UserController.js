@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import circularJson from 'circular-json';
 
 import {
     UserSchema
@@ -10,6 +11,7 @@ const User = mongoose.model('User', UserSchema);
  * POST a new user.
  */
 export const store = async function (ctx) {
+    console.log('hi');
     let newUser = new User(ctx.request.body);
 
     let result = await newUser.save((err, user) => {
@@ -22,13 +24,8 @@ export const store = async function (ctx) {
 }
 
 export const getUser = async function (ctx) {
-    let result = User.find({}, (err, user) => {
+    ctx.body = circularJson.stringify(User.find({}, (err, user) => {
         // if (err) return err;
-        return user;
-    });
-    // console.log(result);
-
-    ctx.body = {
-        result
-    };
+        return user
+    }));
 }
