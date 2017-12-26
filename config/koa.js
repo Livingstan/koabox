@@ -36,6 +36,7 @@ export const start = () => {
         .then(app => {
             // register plugins
             app.use(bodyParser());
+            app.use(logger());
             app.use(convert(koaRes()));
 
             // bind routes
