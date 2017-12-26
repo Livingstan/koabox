@@ -3,7 +3,12 @@ import User from './controller/UserController';
 
 const router = new Router();
 
-router.get("/", User.fetchAll);
+router.all("/users", User.fetchAll);
+router.post("/users", User.store);
+router.get("/users/:id", User.fetchBy);
+router.get("/users/:id/edit", User.edit);
+router.put("/users/:id", User.update);
+router.del("/users/:id", User.destroy);
 
 // let router = Router({
 //     prefix: 'api/'

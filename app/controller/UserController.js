@@ -9,8 +9,9 @@ const User = mongoose.model('User', UserSchema);
 /**
  * POST a new user.
  */
-export const store = async(ctx) => {
+export const store = async(ctx, next) => {
     let newUser = new User(ctx.request.body);
+    ctx.body = ctx;
 
     await newUser.save((err, user) => {
         if (!newUser.first_name) ctx.throw(400, '.name required');
@@ -22,7 +23,7 @@ export const store = async(ctx) => {
 /**
  * GET all users.
  */
-export const fetchAll = async(ctx) => {
+export const fetchAll = async(ctx, next) => {
     await User.find({}, (err, user) => {
         if (err) return err;
         ctx.body = user;
@@ -32,7 +33,7 @@ export const fetchAll = async(ctx) => {
 /**
  * GET users by.
  */
-export const fetchBy = async(ctx) => {
+export const fetchBy = async(ctx, next) => {
     await User.find({
         _id: ctx.params.user
     }, (err, user) => {
@@ -44,7 +45,7 @@ export const fetchBy = async(ctx) => {
 /**
  * GET user for edit.
  */
-export const edit = async(ctx) => {
+export const edit = async(ctx, next) => {
     await User.find({
         _id: ctx.params.user
     }, (err, user) => {
@@ -56,7 +57,7 @@ export const edit = async(ctx) => {
 /**
  * PUT update the user.
  */
-export const update = async(ctx) => {
+export const update = async(ctx,next) => {
     let id = {
         "_id": ctx.params.user
     };
@@ -72,7 +73,7 @@ export const update = async(ctx) => {
 /**
  * DELETE users
  */
-export const destroy = async(ctx) => {
+export const destroy = async(ctx, next) => {
     await User.remove({
         _id: ctx.params.user
     }, (err, user) => {
