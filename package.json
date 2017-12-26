@@ -13,20 +13,19 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "koa": "^2.4.1",
-    "koa-logger": "^3.1.0",
-    "koa-parser": "0.0.2",
-    "koa-rest-router": "^1.0.1",
-    "koa-router": "^7.3.0"
+    "mongoose": "^4.13.7"
   },
   "dependencies": {
     "chalk": "^2.3.0",
-    "circular-json": "^0.5.1",
+    "jsonwebtoken": "^8.1.0",
     "koa-body": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-convert": "^1.2.0",
+    "koa-jwt": "^3.3.0",
+    "koa-logger": "^3.1.0",
     "koa-res": "^3.0.0",
-    "mongoose": "^4.13.7",
-    "nodemon": "^1.13.3",
+    "koa-rest-router": "^1.0.1",
+    "nodemon": "^1.14.3",
     "path": "^0.12.7"
   }
 }

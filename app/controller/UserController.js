@@ -57,12 +57,16 @@ export const edit = async(ctx) => {
  * PUT update the user.
  */
 export const update = async(ctx) => {
-    // await User.find({
-    //     _id: ctx.params.user
-    // }, (err, user) => {
-    //     if (err) return err;
-    //     ctx.body = user;
-    // });
+    let id = {
+        "_id": ctx.params.user
+    };
+
+    let request = ctx.request.body;
+
+    await User.updateOne(id, request, (err, user) => {
+        if (err) return err;
+        ctx.body = user
+    });
 }
 
 /**

@@ -9,11 +9,11 @@ import bodyParser from 'koa-bodyparser';
 import koaRes from 'koa-res';
 import mongoose from 'mongoose';
 
+
 // Packages
 import config from './app';
 import router from '../app/router';
-
-
+import jwt from './jwt';
 
 const init = () => {
     mongoose.Promise = global.Promise;
@@ -35,6 +35,7 @@ export const start = () => {
     init()
         .then(app => {
             // register plugins
+            app.use(jwt.errorHandler()).use(jwt.jwt());
             app.use(bodyParser());
             app.use(logger());
             app.use(convert(koaRes()));
