@@ -19,8 +19,6 @@ import {
 } from '../app/router';
 
 
-
-
 const init = () => {
     mongoose.Promise = global.Promise;
 
@@ -39,8 +37,7 @@ export const start = () => {
 
     init()
         .then(app => {
-            // register plugins
-            // app.use(jwt.errorHandler()).use(jwt.jwt());
+            // register plugins            
             app.use(bodyParser());
             app.use(logger());
             app.use(convert(koaRes()));
