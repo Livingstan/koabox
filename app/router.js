@@ -1,40 +1,27 @@
 import Router from 'koa-router';
+import jwt from '../config/jwt';
 import User from './controller/UserController';
+import auth from './http/auth';
 
+// Public routes
 const router = new Router();
 
-router.all("/users", User.fetchAll);
-router.post("/users", User.store);
-router.get("/users/:id", User.fetchBy);
-router.get("/users/:id/edit", User.edit);
-router.put("/users/:id", User.update);
-router.del("/users/:id", User.destroy);
+router.post("/auth", auth);
 
-// let router = Router({
-//     prefix: 'api/'
-// });
+// Secured routes
+const securedRouter = new Router({
+    prefix: '/api'
+});
+securedRouter.use(jwt.errorHandler()).use(jwt.jwt());
 
-// router.resource('users', {
-//     // GET /users 
-//     index: User.fetchAll,
+securedRouter.all("/users", User.fetchAll);
+securedRouter.post("/users", User.store);
+securedRouter.get("/users/:id", User.fetchBy);
+securedRouter.get("/users/:id/edit", User.edit);
+securedRouter.put("/users/:id", User.update);
+securedRouter.del("/users/:id", User.destroy);
 
-//     // GET /users/new 
-//     new: (ctx, next) => {},
-
-//     // POST /users 
-//     create: User.store,
-
-//     // GET /users/:user 
-//     show: User.fetchBy,
-
-//     // GET /users/:user/edit 
-//     edit: User.edit,
-
-//     // PUT /users/:user 
-//     update: User.update,
-
-//     // DELETE /users/:user 
-//     remove: User.destroy
-// });
-
-export default router;
+module.exports = {
+    router,
+    securedRouter
+};

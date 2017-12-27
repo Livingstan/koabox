@@ -34,8 +34,8 @@ export const fetchAll = async(ctx, next) => {
  * GET users by.
  */
 export const fetchBy = async(ctx, next) => {
-    await User.find({
-        _id: ctx.params.user
+    await User.findOne({
+        _id: ctx.params.id
     }, (err, user) => {
         if (err) return err;
         ctx.body = user;
@@ -46,8 +46,8 @@ export const fetchBy = async(ctx, next) => {
  * GET user for edit.
  */
 export const edit = async(ctx, next) => {
-    await User.find({
-        _id: ctx.params.user
+    await User.findOne({
+        _id: ctx.params.id
     }, (err, user) => {
         if (err) return err;
         ctx.body = user;
@@ -57,14 +57,11 @@ export const edit = async(ctx, next) => {
 /**
  * PUT update the user.
  */
-export const update = async(ctx,next) => {
-    let id = {
-        "_id": ctx.params.user
-    };
+export const update = async(ctx, next) => {
 
     let request = ctx.request.body;
 
-    await User.updateOne(id, request, (err, user) => {
+    await User.updateOne(ctx.params.id, request, (err, user) => {
         if (err) return err;
         ctx.body = user
     });
@@ -75,7 +72,7 @@ export const update = async(ctx,next) => {
  */
 export const destroy = async(ctx, next) => {
     await User.remove({
-        _id: ctx.params.user
+        _id: ctx.params.id
     }, (err, user) => {
         if (err) return err;
         ctx.body = 'Deleted Successfully!'

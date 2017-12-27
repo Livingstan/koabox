@@ -12,8 +12,13 @@ import mongoose from 'mongoose';
 
 // Packages
 import config from './app';
-import router from '../app/router';
-import jwt from './jwt';
+
+import {
+    router,
+    securedRouter
+} from '../app/router';
+
+
 
 
 const init = () => {
@@ -42,6 +47,7 @@ export const start = () => {
 
             // bind routes            
             app.use(router.routes()).use(router.allowedMethods());
+            app.use(securedRouter.routes()).use(securedRouter.allowedMethods());
 
             app.listen(config.server.port, () => {
                 // Create server URL
