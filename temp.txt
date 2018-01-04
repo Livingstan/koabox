@@ -1,1 +1,0 @@
-http://polyglot.ninja/koajs-mongodb-rest-api/

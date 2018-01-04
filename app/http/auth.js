@@ -1,3 +1,4 @@
+import jwt from '../../config/jwt';
 /**
  * Authenticate the user and generate the token.
  * have to validate the user form the database
