@@ -11,7 +11,6 @@ const User = mongoose.model('User', UserSchema);
  */
 export const store = async(ctx, next) => {
     let newUser = new User(ctx.request.body);
-    ctx.body = ctx;
 
     await newUser.save((err, user) => {
         if (!newUser.first_name) ctx.throw(400, '.name required');

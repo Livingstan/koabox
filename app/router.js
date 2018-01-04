@@ -14,12 +14,13 @@ const securedRouter = new Router({
 });
 securedRouter.use(jwt.errorHandler()).use(jwt.jwt());
 
-securedRouter.all("/users", User.fetchAll);
 securedRouter.post("/users", User.store);
+securedRouter.get("/users", User.fetchAll);
 securedRouter.get("/users/:id", User.fetchBy);
 securedRouter.get("/users/:id/edit", User.edit);
 securedRouter.put("/users/:id", User.update);
 securedRouter.del("/users/:id", User.destroy);
+// securedRouter.all("/users", User.fetchAll);
 
 module.exports = {
     router,
