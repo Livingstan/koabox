@@ -1,6 +1,6 @@
 ## About Koabox
 
-Koabox is a web application framework for nodejs developers. 
+Koabox is a boilerplate for koajs framework. 
 
 ## What is included
 
